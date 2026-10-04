@@ -44,7 +44,7 @@ Un ejercicio está terminado cuando sus pruebas pasan **y** la demo corre sin er
 ## Listado de entregables
 
 - [x] **Ex1 — SRP:** `exercises/ex1_srp.py` completo; `pytest tests/test_ex1_srp.py` en verde; demo corre y genera el log vía `RaceLogger`.
-- [ ] **Ex2 — OCP:** `exercises/ex2_ocp.py` completo (`Motorcycle`, `Bicycle`); tests en verde; demo sin errores; sin cambios en `Vehicle`/`Car`/`Truck`/`Track`.
+- [x] **Ex2 — OCP:** `exercises/ex2_ocp.py` completo (`Motorcycle`, `Bicycle`); tests en verde; demo sin errores; sin cambios en `Vehicle`/`Car`/`Truck`/`Track`.
 - [ ] **Ex3 — LSP:** `exercises/ex3_lsp.py` completo; tests en verde; ningún vehículo retrocede ni lanza excepción.
 - [ ] **Ex4 — ISP:** `exercises/ex4_isp.py` completo (4 interfaces, `GasCar`, `Bicycle`, `Drone` en la carrera); tests en verde.
 - [ ] **Ex5 — DIP:** `exercises/ex5_dip.py` completo (`Race` inyectada, `RocketSled`, dos rosters en `main()`); tests en verde.
