@@ -23,7 +23,9 @@ Run it to see the race(s):
 Check your work:
     pytest tests/test_ex5_dip.py -v
 """
-from engine.track import Track
+from typing import List, Optional
+
+from engine.track import Racer, Track
 
 
 class SportsCar:
@@ -48,37 +50,34 @@ class DeliveryVan:
         self.position += 3
 
 
-# TODO(DIP): add a RocketSled class here (name, symbol, position, move()).
+class RocketSled:
+    symbol = "\U0001F680"
+
+    def __init__(self, name):
+        self.name = name
+        self.position = 0
+
+    def move(self):
+        self.position += 9
 
 
 class Race:
-    """VIOLATION (on purpose): this high-level policy is hardwired to two
-    concrete, low-level vehicle classes. Racing a different roster means
-    editing this class -- refactor it so it depends only on the Racer
-    abstraction, injected from the outside.
-    """
+    """Run an injected roster of objects that satisfy the Racer contract."""
 
-    def __init__(self):
-        # TODO(DIP): accept `racers` (and optionally `track`) as
-        # constructor parameters instead of building vehicles here.
-        # Store the racers as `self.racers`.
-        self.vehicles = [SportsCar("Flash"), DeliveryVan("Steady Eddie")]
-        self.track = Track(length=30)
+    def __init__(self, racers: List[Racer], track: Optional[Track] = None):
+        self.racers = racers
+        self.track = track if track is not None else Track(length=30)
 
     def start(self):
-        return self.track.run(self.vehicles)
+        return self.track.run(self.racers)
 
 
 def main():
-    # TODO(DIP): once Race takes racers from the outside, build two
-    # different rosters (one of them using RocketSled) and race each of
-    # them, e.g.:
-    #
-    #   roster_a = [SportsCar("Flash"), DeliveryVan("Steady Eddie")]
-    #   Race(roster_a).start()
-    #   roster_b = [RocketSled("Comet"), DeliveryVan("Steady Eddie II")]
-    #   Race(roster_b).start()
-    Race().start()
+    roster_a = [SportsCar("Flash"), DeliveryVan("Steady Eddie")]
+    Race(roster_a).start()
+
+    roster_b = [RocketSled("Comet"), DeliveryVan("Steady Eddie II")]
+    Race(roster_b).start()
 
 
 if __name__ == "__main__":
